@@ -1,0 +1,41 @@
+! Default configuration file, the titles are marked with an '&' and each line after is one line of the input.
+! Comments are marked with '!'
+! Remove the optional sections that are not used
+! Execute 'extract_IRC.py --make_config full' to make a config file with all options
+
+! required
+! output file/dir name
+& name
+default_IRC
+
+! optional
+! reverse the IRC
+! True or False, the default is False
+& reverse
+False
+
+! optional
+! use the guess of the last structure to do the SCF, will write one checkpointfile
+! First line: True or False
+! Second line: startpoint (Reactant, TS, Product or N=structure_number)
+& Read Guess
+False
+Reactant
+
+! optional
+& Link 0
+%nproc=1
+%mem=1GB
+
+! required
+& Keywords
+# hf/6-31g pop=nboread
+
+! required
+! separated by coma ',' or space ' '
+& Charge and Multiplicity
+0,1
+
+! optional
+& After coordinates options
+ $nbo bndidx $end

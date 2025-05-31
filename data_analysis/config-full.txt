@@ -1,0 +1,76 @@
+! Default configuration file, the titles are marked with an '&' and each line after is one line of the input.
+! Comment lines are marked with '!' at the begining
+! Remove the optional sections that are not used
+
+! required
+! output file/dir name
+& name
+default_IRC
+
+! optional
+! reverse the IRC
+! True or False, the default is False
+& reverse
+False
+
+! optional
+! write a separated file for each structure
+! True or False, the default is False
+& multiple
+False
+
+! optional
+! write a checkpointfile for each structure, True or False
+! Second line: checkpoint name, leave in default for the same name as & name
+& checkpoint
+False
+
+! optional
+! use the guess of the last structure to do the SCF, will write one checkpointfile
+! First line: True or False
+! Second line: startpoint (Reactant, TS, Product or N=structure_number)
+& Read Guess
+False
+Reactant
+
+! optional
+! Creates one file for each fragment in a counterpoise-like way
+! In this case the calculation should NOT be counterpoise, use another calculation like energy or nbo
+! If True, must specify fragments in 'Atom options' section
+! The name of each fragment file is 'name_fragment_n.gjf' plus a 'name_supramolec.gjf' with the full system
+! First line: True or False
+! second line: number of fragments
+& Split Fragments
+False
+2
+
+! optional
+& Link 0
+%nproc=1
+%mem=1GB
+
+! required
+& Keywords
+# hf/6-31g counterpoise=2 pop=nboread
+
+! required
+! If using Counterpoise must specify the whole system charge and multiplicity first and then for the fragments
+! separated by coma ',' or space ' '
+& Charge and Multiplicity
+-1,1 0,1 -1,1
+
+! optional
+! Use to input atom groups (Counterpoise) or isotopes, must contain the atoms in the same order than in the IRC
+& Atom options
+C(Fragment=1,Iso=13)
+H(Fragment=1)
+H(Fragment=1)
+O(Fragment=1)
+N(Fragment=2)
+H(Fragment=2,Iso=2)
+H(Fragment=2)
+H(Fragment=2)
+
+! optional
+& After coordinates options
+ $nbo bndidx $end
